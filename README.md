@@ -109,5 +109,3 @@ The dashboard is intended for informational and educational purposes. Users shou
 ---
 
 **Together, we can ensure that policy decisions are informed by data and responsive to community needs.**
-
-For questions, suggestions, or collaboration opportunities, please open an issue or contact the maintainers.
