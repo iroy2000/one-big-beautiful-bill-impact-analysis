@@ -6,10 +6,14 @@
     <title>H.R. 1 Impact Analysis Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
@@ -20,7 +24,7 @@
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
@@ -45,17 +49,19 @@
         
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
             margin-top: 30px;
         }
         
         .chart-container {
             background: white;
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            overflow: hidden;
         }
         
         .chart-container:hover {
@@ -64,7 +70,7 @@
         }
         
         .chart-title {
-            font-size: 1.4em;
+            font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 15px;
             color: #2c3e50;
@@ -82,7 +88,7 @@
         .impact-legend {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
@@ -91,15 +97,17 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 20px;
             background: rgba(0,0,0,0.05);
+            font-size: 0.9em;
         }
         
         .legend-color {
             width: 16px;
             height: 16px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
         
         .positive { background-color: #27ae60; }
@@ -125,6 +133,16 @@
             line-height: 1.6;
         }
         
+        .methodology ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .methodology li {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        
         .data-source {
             font-size: 0.8em;
             color: #666;
@@ -133,8 +151,15 @@
             font-style: italic;
         }
         
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        
         canvas {
-            max-height: 400px;
+            width: 100% !important;
+            height: 100% !important;
         }
         
         .wide-chart {
@@ -158,6 +183,125 @@
         .highlight-stat p {
             margin: 5px 0 0 0;
             opacity: 0.9;
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            .chart-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .chart-container {
+                padding: 15px;
+            }
+            
+            .chart-title {
+                font-size: 1.1em;
+            }
+            
+            .chart-description {
+                font-size: 0.8em;
+            }
+            
+            .impact-legend {
+                gap: 10px;
+            }
+            
+            .legend-item {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
+            
+            .legend-color {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .chart-wrapper {
+                height: 300px;
+            }
+            
+            .methodology {
+                padding: 15px;
+            }
+            
+            .methodology h3 {
+                font-size: 1.1em;
+            }
+            
+            .methodology p, .methodology li {
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 0.9em;
+            }
+            
+            .chart-title {
+                font-size: 1em;
+            }
+            
+            .chart-description {
+                font-size: 0.75em;
+            }
+            
+            .impact-legend {
+                gap: 8px;
+            }
+            
+            .legend-item {
+                padding: 5px 8px;
+                font-size: 0.75em;
+            }
+            
+            .legend-color {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .chart-wrapper {
+                height: 280px;
+            }
+            
+            .methodology {
+                padding: 12px;
+            }
+            
+            .methodology h3 {
+                font-size: 1em;
+            }
+            
+            .methodology p, .methodology li {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -189,84 +333,108 @@
             <div class="chart-container">
                 <div class="chart-title">1. Impact by Income Group</div>
                 <div class="chart-description">Net change in household resources by income quintile</div>
-                <canvas id="incomeChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="incomeChart"></canvas>
+                </div>
                 <div class="data-source">Based on CBO distributional analysis</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">2. Impact by Ethnicity</div>
                 <div class="chart-description">Estimated effects on different ethnic communities</div>
-                <canvas id="ethnicityChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="ethnicityChart"></canvas>
+                </div>
                 <div class="data-source">Analysis based on program participation rates</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">3. Impact by Age Group</div>
                 <div class="chart-description">Effects across different age demographics</div>
-                <canvas id="ageChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="ageChart"></canvas>
+                </div>
                 <div class="data-source">Based on program eligibility and tax provisions</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">4. Impact by Political Affiliation</div>
                 <div class="chart-description">Estimated effects by voting patterns</div>
-                <canvas id="politicalChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="politicalChart"></canvas>
+                </div>
                 <div class="data-source">Based on geographic and demographic correlations</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">5. Impact by Geographic Region</div>
                 <div class="chart-description">Regional differences in bill effects</div>
-                <canvas id="geographicChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="geographicChart"></canvas>
+                </div>
                 <div class="data-source">Based on state-level program participation</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">6. Impact by Education Level</div>
                 <div class="chart-description">Effects across educational attainment levels</div>
-                <canvas id="educationChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="educationChart"></canvas>
+                </div>
                 <div class="data-source">Based on income correlations and program usage</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">7. Impact by Employment Sector</div>
                 <div class="chart-description">Effects across different employment categories</div>
-                <canvas id="employmentChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="employmentChart"></canvas>
+                </div>
                 <div class="data-source">Based on tax provisions and benefit changes</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">8. Impact by Family Structure</div>
                 <div class="chart-description">Effects on different family compositions</div>
-                <canvas id="familyChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="familyChart"></canvas>
+                </div>
                 <div class="data-source">Based on SNAP, Medicaid, and tax credit changes</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">9. Impact by Immigration Status</div>
                 <div class="chart-description">Effects on different immigration categories</div>
-                <canvas id="immigrationChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="immigrationChart"></canvas>
+                </div>
                 <div class="data-source">Based on benefit eligibility changes</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">10. Impact by Disability Status</div>
                 <div class="chart-description">Effects on disabled vs. non-disabled populations</div>
-                <canvas id="disabilityChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="disabilityChart"></canvas>
+                </div>
                 <div class="data-source">Based on Medicaid and work requirement changes</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">11. Impact by Health Insurance Type</div>
                 <div class="chart-description">Effects across different insurance categories</div>
-                <canvas id="healthInsuranceChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="healthInsuranceChart"></canvas>
+                </div>
                 <div class="data-source">Based on ACA subsidy and Medicaid changes</div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-title">12. Impact by Housing Status</div>
                 <div class="chart-description">Effects on renters vs. homeowners</div>
-                <canvas id="housingChart"></canvas>
+                <div class="chart-wrapper">
+                    <canvas id="housingChart"></canvas>
+                </div>
                 <div class="data-source">Based on tax provisions and housing programs</div>
             </div>
         </div>
@@ -298,7 +466,10 @@
                     position: 'bottom',
                     labels: {
                         usePointStyle: true,
-                        padding: 20
+                        padding: 15,
+                        font: {
+                            size: window.innerWidth < 768 ? 10 : 12
+                        }
                     }
                 }
             },
@@ -307,11 +478,22 @@
                     beginAtZero: true,
                     grid: {
                         color: 'rgba(0,0,0,0.1)'
+                    },
+                    ticks: {
+                        font: {
+                            size: window.innerWidth < 768 ? 9 : 11
+                        }
                     }
                 },
                 x: {
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: window.innerWidth < 768 ? 9 : 11
+                        },
+                        maxRotation: window.innerWidth < 768 ? 45 : 0
                     }
                 }
             }
@@ -340,7 +522,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Higher income groups benefit more from tax cuts'
+                        text: 'Higher income groups benefit more from tax cuts',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -366,7 +551,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Communities of color disproportionately affected by benefit cuts'
+                        text: 'Communities of color disproportionately affected by benefit cuts',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -393,7 +581,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Middle-aged and older adults benefit most from tax provisions'
+                        text: 'Middle-aged and older adults benefit most from tax provisions',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -417,7 +608,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Republicans benefit more from overall provisions'
+                        text: 'Republicans benefit more from overall provisions',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -446,7 +640,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Red states generally benefit more from combined provisions'
+                        text: 'Red states generally benefit more from combined provisions',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -472,14 +669,22 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Higher education levels correlate with greater benefits'
+                        text: 'Higher education levels correlate with greater benefits',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 },
                 scales: {
                     r: {
                         beginAtZero: true,
                         min: -5,
-                        max: 6
+                        max: 6,
+                        ticks: {
+                            font: {
+                                size: window.innerWidth < 768 ? 9 : 11
+                            }
+                        }
                     }
                 }
             }
@@ -511,7 +716,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Self-employed and private sector workers benefit most'
+                        text: 'Self-employed and private sector workers benefit most',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -540,7 +748,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Single parents face the greatest negative impact'
+                        text: 'Single parents face the greatest negative impact',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -569,7 +780,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Undocumented immigrants face severe negative impacts'
+                        text: 'Undocumented immigrants face severe negative impacts',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -593,7 +807,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'People with disabilities face disproportionate negative impacts'
+                        text: 'People with disabilities face disproportionate negative impacts',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -623,7 +840,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Medicaid recipients face the largest negative impact'
+                        text: 'Medicaid recipients face the largest negative impact',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
@@ -652,7 +872,10 @@
                     ...chartConfig.plugins,
                     title: {
                         display: true,
-                        text: 'Homeowners benefit significantly from tax provisions'
+                        text: 'Homeowners benefit significantly from tax provisions',
+                        font: {
+                            size: window.innerWidth < 768 ? 11 : 14
+                        }
                     }
                 }
             }
