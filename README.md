@@ -1,6 +1,5 @@
 # H.R. 1 "One Big Beautiful Bill Act" Impact Analysis Dashboard
 
-
 ## Overview
 
 This repository contains a comprehensive, **data-driven analysis** of the distributional effects of H.R. 1, the "One Big Beautiful Bill Act," across various demographic groups in the United States. The analysis is designed to provide government officials, policymakers, advocacy groups, and the public with actionable insights into how this legislation impacts different communities.
@@ -65,47 +64,128 @@ This repository contains a comprehensive, **data-driven analysis** of the distri
 3. **Share information** with friends and family
 4. **Participate in civic engagement** with informed perspectives
 
+## Dashboard Sections
+
+### Demographic Analysis (Charts 1-12)
+- Income distribution effects
+- Racial and ethnic impact analysis
+- Age group comparisons
+- Political affiliation correlations
+- Geographic regional differences
+- Education level impacts
+- Employment sector effects
+- Family structure analysis
+- Immigration status impacts
+- Disability status effects
+- Health insurance coverage impacts
+- Housing status comparisons
+
+### Economic Impact Analysis (Charts 13-15)
+- **Economic Sector Impact**: Financial and employment changes by industry
+- **Industry Employment Changes**: Current vs. projected employment levels
+- **Budget Impact Timeline**: Deficit, debt, and GDP projections (2025-2030)
+
+## Quick Start
+
+### Local Development
+1. Clone the repository
+2. Open `index.html` in a web browser
+3. No build process required - uses CDN for Chart.js
+
+### GitHub Pages Deployment
+1. Push to GitHub repository
+2. Enable GitHub Pages in repository settings
+3. Set source to main branch
+4. Dashboard will be available at `https://iroy2000.github.io/one-big-beautiful-bill-impact-analysis`
+
+## Project Structure
+
+```
+one-big-beautiful-bill-impact-analysis/
+├── index.html          # Main dashboard HTML
+├── css/
+│   └── styles.css      # All dashboard styling
+├── js/
+│   └── dashboard.js    # Chart configurations and logic
+└── README.md           # Project documentation
+```
+
+## Technical Details
+
+### Browser Compatibility
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile responsive design
+- Optimized for various screen sizes
+
+### Chart Types Used
+- Bar charts for comparative data
+- Line charts for trends over time
+- Doughnut charts for proportional data
+- Radar charts for multi-dimensional comparisons
+- Polar area charts for categorical data
+- Mixed charts for dual-axis visualizations
+
+## Responsive Features
+
+- **Desktop**: Full grid layout with hover effects
+- **Tablet**: Adjusted grid spacing and font sizes
+- **Mobile**: Single-column layout with optimized touch targets
+- **Adaptive Text**: Font sizes scale with screen size
+- **Flexible Charts**: Maintain readability across all devices
+
+## Data Sources
+
+Based on Congressional Budget Office (CBO) analysis covering:
+- Tax Cuts and Jobs Act provisions
+- ACA health insurance subsidy changes
+- Medicaid eligibility modifications
+- SNAP program adjustments
+- Student loan program changes
+- Border security funding
+- Federal spending adjustments
+
+## Customization and Contribution
+
+### Adding New Charts
+1. Add chart container to `index.html`
+2. Implement chart in `js/dashboard.js`
+3. Update summary statistics if needed
+
+### Styling Changes
+- Modify `css/styles.css` for visual updates
+- All responsive breakpoints included
+- CSS variables for easy color scheme changes
+
+### Data Updates
+- Update data arrays in `js/dashboard.js`
+- Summary statistics auto-calculate from chart data
+- Maintain existing data structure for compatibility
+
+## Chart Configuration
+
+All charts share a common configuration base with:
+- Responsive sizing
+- Consistent font scaling
+- Mobile-optimized rotations
+- Unified color schemes
+- Accessibility considerations
+
+## GitHub Pages Optimization
+
+- Relative file paths
+- CDN dependencies
+- No build process required
+- Optimized asset loading
+- Mobile-first responsive design
+
+## License
+
+This project is open source and available under the MIT License.
+
 ## Contributing
 
-We welcome contributions from researchers, policy analysts, developers, and community advocates:
-
-### Ways to Contribute
-- **Data Validation**: Verify calculations and methodology
-- **Additional Analysis**: Expand demographic categories or time periods
-- **Visualization Improvements**: Enhance chart clarity and accessibility
-- **Documentation**: Improve explanations and context
-- **Bug Reports**: Identify and report technical issues
-
-### Contribution Guidelines
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit your changes (`git commit -am 'Add new analysis'`)
-4. Push to the branch (`git push origin feature/improvement`)
-5. Create a Pull Request with detailed description
-
-## Additional Resources
-
-### Official Sources
-- [Congressional Budget Office - H.R. 1 Analysis](https://www.cbo.gov/publication/61387)
-- [Congress.gov - H.R. 1 Full Text](https://www.congress.gov/bill/119th-congress/house-bill/1)
-- [Joint Committee on Taxation Reports](https://www.jct.gov/)
-
-### Related Research
-- Urban Institute policy impact analyses
-- Center on Budget and Policy Priorities reports
-- Tax Policy Center distributional studies
-- Kaiser Family Foundation health policy research
-
-## Disclaimer
-
-This analysis is based on official government projections and established demographic correlations. Actual impacts may vary based on:
-- Implementation details and regulatory guidance
-- Economic conditions and market responses
-- State-level policy decisions and variations
-- Individual circumstances and choices
-
-The dashboard is intended for informational and educational purposes. Users should consult official sources and qualified professionals for specific policy guidance.
+Contributions are welcome! Please feel free to submit pull requests or open issues for improvements and bug fixes.
 
 ---
 
-**Together, we can ensure that policy decisions are informed by data and responsive to community needs.**
+**Note**: This analysis represents estimated effects based on CBO projections and demographic correlations. Actual impacts may vary based on implementation details and economic conditions.
