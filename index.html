@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>H.R. 1 "One Big Beautiful Bill Act" Impact Analysis</h1>
-        <p class="subtitle">Distributional Effects Across Different Demographic Groups (2026-2034)</p>
+        <p class="subtitle">Distributional Effects Across Different Demographic Groups</p>
         
         <div class="impact-legend">
             <div class="legend-item">
@@ -141,7 +141,80 @@
             </div>
             
             <div class="chart-container">
-                <div class="chart-title">13. Economic Sector Impact</div>
+                <div class="chart-title">13. Tax Burden Changes by Income Bracket</div>
+                <div class="chart-description">Effective tax rate changes across income levels</div>
+                <div class="chart-wrapper">
+                    <canvas id="taxBurdenChart"></canvas>
+                </div>
+                <div class="data-source">Based on TCJA extension provisions</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">14. State & Local Tax Revenue Impact</div>
+                <div class="chart-description">SALT deduction cap effects by state</div>
+                <div class="chart-wrapper">
+                    <canvas id="stateRevenueChart"></canvas>
+                </div>
+                <div class="data-source">Based on SALT deduction provisions</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">15. Health Insurance Coverage Changes</div>
+                <div class="chart-description">Projected coverage loss by insurance type</div>
+                <div class="chart-wrapper">
+                    <canvas id="coverageChart"></canvas>
+                </div>
+                <div class="data-source">Based on ACA subsidy reductions</div>
+            </div>
+            
+            <!-- New Additional Charts -->
+            <div class="chart-container">
+                <div class="chart-title">16. Out-of-Pocket Healthcare Costs</div>
+                <div class="chart-description">Average cost increases by family size</div>
+                <div class="chart-wrapper">
+                    <canvas id="healthCostChart"></canvas>
+                </div>
+                <div class="data-source">Based on premium subsidy changes</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">17. Border Security Investment Breakdown</div>
+                <div class="chart-description">Allocation of border security funding</div>
+                <div class="chart-wrapper">
+                    <canvas id="borderSpendingChart"></canvas>
+                </div>
+                <div class="data-source">Based on border security provisions</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">18. Urban vs Rural Impact Comparison</div>
+                <div class="chart-description">Differential effects by community type</div>
+                <div class="chart-wrapper">
+                    <canvas id="urbanRuralChart"></canvas>
+                </div>
+                <div class="data-source">Based on program participation patterns</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">19. Small Business vs Large Corporation Impact</div>
+                <div class="chart-description">Tax and regulatory burden changes</div>
+                <div class="chart-wrapper">
+                    <canvas id="businessSizeChart"></canvas>
+                </div>
+                <div class="data-source">Based on tax provisions and deregulation</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">20. SNAP Benefit Changes by Household Type</div>
+                <div class="chart-description">Food assistance impact analysis</div>
+                <div class="chart-wrapper">
+                    <canvas id="snapChart"></canvas>
+                </div>
+                <div class="data-source">Based on SNAP work requirement changes</div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">21. Economic Sector Impact</div>
                 <div class="chart-description">Financial impact and job changes by sector (in billions)</div>
                 <div class="chart-wrapper">
                     <canvas id="sectorImpactChart"></canvas>
@@ -150,7 +223,7 @@
             </div>
             
             <div class="chart-container">
-                <div class="chart-title">14. Industry Employment Changes</div>
+                <div class="chart-title">22. Industry Employment Changes</div>
                 <div class="chart-description">Current vs. projected employment levels by industry</div>
                 <div class="chart-wrapper">
                     <canvas id="employmentChangeChart"></canvas>
@@ -159,7 +232,7 @@
             </div>
             
             <div class="chart-container wide-chart">
-                <div class="chart-title">15. Budget Impact Timeline (2025-2030)</div>
+                <div class="chart-title">23. Budget Impact Timeline (2025-2030)</div>
                 <div class="chart-description">Projected deficit, debt, and GDP changes over time</div>
                 <div class="chart-wrapper">
                     <canvas id="budgetTimelineChart"></canvas>

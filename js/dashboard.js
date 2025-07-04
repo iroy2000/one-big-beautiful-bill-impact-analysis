@@ -712,6 +712,308 @@ function initializeCharts() {
             }
         }
     });
+
+    // NEW ADDITIONAL CHARTS
+    
+    // Tax Burden Changes Chart
+    new Chart(document.getElementById('taxBurdenChart'), {
+        type: 'bar',
+        data: {
+            labels: ['<$25K', '$25-50K', '$50-100K', '$100-200K', '$200-500K', '$500K+'],
+            datasets: [
+                {
+                    label: 'Current Effective Rate (%)',
+                    data: [3.1, 8.2, 11.7, 16.8, 24.2, 28.5],
+                    backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                    borderColor: '#3498db',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Projected Rate After H.R.1 (%)',
+                    data: [3.8, 7.6, 10.9, 15.2, 21.8, 25.1],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'Lower income groups face higher effective tax rates',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // State Tax Revenue Impact Chart
+    const stateRevenueData = [
+        { state: 'California', impact: -12.8, color: '#e74c3c' },
+        { state: 'New York', impact: -11.2, color: '#e74c3c' },
+        { state: 'Texas', impact: 2.1, color: '#27ae60' },
+        { state: 'Florida', impact: 3.8, color: '#27ae60' },
+        { state: 'Illinois', impact: -8.9, color: '#e74c3c' },
+        { state: 'New Jersey', impact: -9.7, color: '#e74c3c' },
+        { state: 'Pennsylvania', impact: -2.1, color: '#f39c12' },
+        { state: 'Ohio', impact: 1.2, color: '#27ae60' }
+    ];
+
+    new Chart(document.getElementById('stateRevenueChart'), {
+        type: 'bar',
+        data: {
+            labels: stateRevenueData.map(d => d.state),
+            datasets: [{
+                label: 'Revenue Impact (Billions $)',
+                data: stateRevenueData.map(d => d.impact),
+                backgroundColor: stateRevenueData.map(d => d.color),
+                borderColor: stateRevenueData.map(d => d.color),
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'High-tax states lose revenue from SALT cap',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // Health Insurance Coverage Changes Chart
+    new Chart(document.getElementById('coverageChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Marketplace Plans', 'Medicaid', 'Employer Plans', 'Uninsured (New)'],
+            datasets: [{
+                label: 'Coverage Loss (Millions)',
+                data: [4.2, 3.8, 0.8, 8.8],
+                backgroundColor: ['#e67e22', '#e74c3c', '#f39c12', '#c0392b'],
+                borderColor: '#ffffff',
+                borderWidth: 3
+            }]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: '8.8 million Americans projected to lose coverage',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // Healthcare Cost Burden Chart
+    new Chart(document.getElementById('healthCostChart'), {
+        type: 'line',
+        data: {
+            labels: ['Single Adult', 'Couple', 'Family of 3', 'Family of 4', 'Family of 5+'],
+            datasets: [
+                {
+                    label: 'Current Annual Cost ($)',
+                    data: [3200, 6800, 9500, 12200, 15800],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    borderWidth: 3,
+                    fill: false,
+                    tension: 0.4
+                },
+                {
+                    label: 'Projected Cost After H.R.1 ($)',
+                    data: [4100, 8900, 12800, 16700, 21500],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    borderWidth: 3,
+                    fill: false,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'Healthcare costs increase significantly for all family sizes',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // Border Security Spending Chart
+    new Chart(document.getElementById('borderSpendingChart'), {
+        type: 'polarArea',
+        data: {
+            labels: ['Physical Barriers', 'Technology Systems', 'Personnel', 'Detention Centers', 'ICE Operations'],
+            datasets: [{
+                data: [18.5, 12.3, 8.7, 6.2, 9.8],
+                backgroundColor: [
+                    'rgba(231, 76, 60, 0.8)',
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(46, 204, 113, 0.8)',
+                    'rgba(241, 196, 15, 0.8)',
+                    'rgba(155, 89, 182, 0.8)'
+                ],
+                borderColor: ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: '$55.5B allocated to border security over 5 years',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // Urban vs Rural Impact Chart
+    new Chart(document.getElementById('urbanRuralChart'), {
+        type: 'radar',
+        data: {
+            labels: ['Tax Benefits', 'Healthcare Access', 'Education Funding', 'Infrastructure', 'Safety Net Programs', 'Job Opportunities'],
+            datasets: [
+                {
+                    label: 'Urban Areas',
+                    data: [2.1, -4.2, -3.8, 1.2, -5.1, 2.8],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#3498db'
+                },
+                {
+                    label: 'Rural Areas',
+                    data: [4.8, -2.1, -4.9, -1.8, -6.8, -2.3],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#e74c3c'
+                }
+            ]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'Rural communities face greater negative impacts',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    min: -8,
+                    max: 6,
+                    ticks: {
+                        font: {
+                            size: window.innerWidth < 768 ? 9 : 11
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Business Size Impact Chart
+    new Chart(document.getElementById('businessSizeChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Small Business\n(<50 employees)', 'Medium Business\n(50-500 employees)', 'Large Corporations\n(500+ employees)', 'Fortune 500\nCompanies'],
+            datasets: [
+                {
+                    label: 'Tax Burden Change (%)',
+                    data: [-2.1, -1.8, -4.2, -6.8],
+                    backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                    borderColor: '#2ecc71',
+                    borderWidth: 2,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Regulatory Compliance Cost Change (%)',
+                    data: [1.2, -0.8, -3.1, -5.2],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 2,
+                    yAxisID: 'y'
+                }
+            ]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'Large corporations benefit most from deregulation',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
+
+    // SNAP Benefits Chart
+    new Chart(document.getElementById('snapChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Single Adults\n(18-49)', 'Elderly\n(65+)', 'Families with\nChildren', 'Disabled\nIndividuals', 'Working Poor\nFamilies'],
+            datasets: [{
+                label: 'Benefit Change (Monthly $)',
+                data: [-89, -12, -156, -78, -134],
+                backgroundColor: [
+                    '#e74c3c', '#f39c12', '#e74c3c', '#e67e22', '#e74c3c'
+                ],
+                borderColor: [
+                    '#c0392b', '#e67e22', '#c0392b', '#d35400', '#c0392b'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true,
+                    text: 'SNAP work requirements reduce benefits across all groups',
+                    font: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    }
+                }
+            }
+        }
+    });
 }
 
 // Initialize dashboard when DOM is loaded
