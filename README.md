@@ -80,10 +80,20 @@ This repository contains a comprehensive, **data-driven analysis** of the distri
 - Health insurance coverage impacts
 - Housing status comparisons
 
-### Economic Impact Analysis (Charts 13-15)
-- **Economic Sector Impact**: Financial and employment changes by industry
-- **Industry Employment Changes**: Current vs. projected employment levels
-- **Budget Impact Timeline**: Deficit, debt, and GDP projections (2025-2030)
+### Policy-Specific Impact Analysis (Charts 13-20)
+- **Tax Burden Changes by Income Bracket**: Effective tax rate changes across income levels
+- **State & Local Tax Revenue Impact**: SALT deduction cap effects by state
+- **Health Insurance Coverage Changes**: Projected coverage loss by insurance type
+- **Out-of-Pocket Healthcare Costs**: Average cost increases by family size
+- **Border Security Investment Breakdown**: Allocation of border security funding
+- **Urban vs Rural Impact Comparison**: Differential effects by community type
+- **Small Business vs Large Corporation Impact**: Tax and regulatory burden changes
+- **SNAP Benefit Changes by Household Type**: Food assistance impact analysis
+
+### Economic & Budget Analysis (Charts 21-23)
+- **Economic Sector Impact**: Financial impact and job changes by sector (in billions)
+- **Industry Employment Changes**: Current vs. projected employment levels by industry
+- **Budget Impact Timeline**: Projected deficit, debt, and GDP changes over time (2025-2030)
 
 ## Quick Start
 
