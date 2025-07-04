@@ -93,7 +93,6 @@ This repository contains a comprehensive, **data-driven analysis** of the distri
 ### Economic & Budget Analysis (Charts 21-23)
 - **Economic Sector Impact**: Financial impact and job changes by sector (in billions)
 - **Industry Employment Changes**: Current vs. projected employment levels by industry
-- **Budget Impact Timeline**: Projected deficit, debt, and GDP changes over time (2025-2030)
 
 ## Quick Start
 
